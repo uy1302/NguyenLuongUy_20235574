@@ -1,4 +1,4 @@
-package oop;
+package hust.soict.dsai.aims.disc.copy;
 
 public class DigitalVideoDisc {
 	private String title;
