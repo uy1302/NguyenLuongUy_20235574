@@ -1,18 +1,13 @@
 package hust.soict.dsai.aims.cart;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
-	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>(); 
-    
-    
-	
-	
+	private List<Media> itemsOrdered = new ArrayList<Media>(); 
 	
 	public void addMedia(Media item) {
 		if (itemsOrdered.contains(item)) {
@@ -40,54 +35,56 @@ public class Cart {
         }
         return total;
     }
-    
-    public String toString(DigitalVideoDisc dvd) {
-        String title = dvd.getTitle() != null ? dvd.getTitle() : "N/A";
-        String category = dvd.getCategory() != null ? dvd.getCategory() : "N/A";
-        String director = dvd.getDirector() != null ? dvd.getDirector() : "N/A";
-        String length = dvd.getLength() > 0 ? String.valueOf(dvd.getLength()) : "N/A"; 
-        String cost = dvd.getCost() > 0 ? String.valueOf(dvd.getCost()) : "N/A";
-    	return "DVD" +"-"+ title + "-" + category + "-"+ director +"-" + length + ":"+ cost +"$";
-    }
-    
+    public void getAllTitles() {
+		for (Media item: itemsOrdered) {
+			System.out.println(item.getTitle());
+		}
+	}
     public void print() {
-    	System.out.println("***********************CART***********************");
-    	System.out.println("Ordered Items:");
-    	int count = 1;
-    	for (DigitalVideoDisc dvd: itemsOrdered) {
-    		if (dvd != null) {
-    		System.out.println(count + ". " + toString(dvd));
-    		count++;
-    		}
-    	}
-    	System.out.println("Total cost: " + String.valueOf(totalCost()));
-    	System.out.println("***************************************************");
-    }
-    
-    public void search_id(int id) {
-    	boolean x = true;
-    	for(DigitalVideoDisc dvd:itemsOrdered) {
-    		if (dvd.getId() == id ) {
-    			System.out.println(toString(dvd));
-    			x = false;
-    			break;
-    		}
-    	}
-    	if (x) {
-    	System.out.println("No match is found.");
-    	}
-    }
-    public void search_title(String title) {
-    	boolean x = true;
-    	for(DigitalVideoDisc dvd:itemsOrdered) {
-    		if (dvd.getTitle() == title ) {
-    			System.out.println(toString(dvd));
-    			x = false;
-    			break;
-    		}
-    	}
-    	if (x) {
-    	System.out.println("No match is found.");
-    	}
-    }
+		System.out.println("***********************CART***********************");
+		System.out.println("Ordered Items: ");
+		for (Media item: itemsOrdered) {
+			System.out.println(item.toString());
+		}
+		System.out.println("Total cost: " + this.totalCost());
+		System.out.println("***************************************************");
+	}
+
+    public void search(int id) {
+		boolean found = false;
+		for (Media item: itemsOrdered) {
+			if (item.isMatch(id)) {
+				System.out.println(item.toString());
+				found = true;
+			}
+		}
+		if (found == false) {
+			System.out.println("No match is found");
+		}
+	}
+    public void search(String title) {
+		boolean found = false;
+		for (Media item: itemsOrdered) {
+			if (item.isMatch(title)) {
+				System.out.println(item.toString());
+				found = true;
+			}
+		}
+		if (found == false) {
+			System.out.println("No match is found");
+		}
+	}
+    public void sortByTitleCost() {
+		Collections.sort(itemsOrdered);
+	}
+    public void sortByCostTitle() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+	}
+    public int getNumberOfMedia() {
+		return itemsOrdered.size();
+	}
+	
+	public void empty() {
+		itemsOrdered = new ArrayList<Media>();
+	}
 }

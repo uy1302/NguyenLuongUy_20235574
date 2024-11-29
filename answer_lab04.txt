@@ -1,0 +1,9 @@
+- What class should implement the Comparable interface? 
+Class Media
+- In those classes, how should you implement the compareTo() method be to reflect the ordering that we want? 
+Implement in code that is submitted already
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach? 
+No, the Comparable interface only allows for one natural ordering. The ordering defined in the compareTo() method becomes the default ordering for that class.
+- Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+Implement the Comparator Interface: Create a comparator class that implements the Comparator<DVD> interface.
+Override the compare Method: In the compare method, define the ordering rules
