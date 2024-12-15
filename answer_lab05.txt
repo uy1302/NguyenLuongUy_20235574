@@ -1,0 +1,5 @@
+If the Aims class is not updated to handle exceptions thrown by the play() methods, the following will happen when a PlayerException is thrown:
+
+Abrupt Termination: The program will terminate unexpectedly if the exception is not caught or declared to be thrown, disrupting the normal flow of execution.
+Unexecuted Code: Any statements after the point where the exception is thrown will not execute, leading to incomplete program behavior.
+Error Details in Console: The exception's stack trace will be printed to the console, revealing the type of exception and its location in the code. This provides diagnostic information but does not help in maintaining program stability.

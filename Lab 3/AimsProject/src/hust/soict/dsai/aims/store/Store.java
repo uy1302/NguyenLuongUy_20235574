@@ -9,7 +9,7 @@ public class Store {
 //	private int id = 0;
 	
 	public void addMedia(Media item) {
-		if (itemsInStore.contains(item)) {
+		if (itemsInStore.contains(item)) { 
 			System.out.println("Already in the store");
 		}
 		else {
@@ -43,4 +43,10 @@ public class Store {
 		}
 		return null;
 	}
+
+	public ArrayList<Media> getItemsInStore() {
+		return (ArrayList<Media>)itemsInStore;
+	} 
+	
+
 }

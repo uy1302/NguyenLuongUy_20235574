@@ -9,7 +9,7 @@ public class MediaComparatorByCostTitle implements Comparator<Media> {
         if (costComparison == 0) {
             return media1.getTitle().compareToIgnoreCase(media2.getTitle());
         }
-        return costComparison;
+        return costComparison; 
     }
 
 }
